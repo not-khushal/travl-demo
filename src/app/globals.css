@@ -1,0 +1,145 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 165 13% 95%; /* #F0F4F3 Light Gray */
+    --foreground: 177 10% 25%; /* Dark Tealish Gray for text */
+    --card: 165 13% 100%; /* White cards */
+    --card-foreground: 177 10% 25%;
+    --popover: 165 13% 100%;
+    --popover-foreground: 177 10% 25%;
+    --primary: 178 65% 48%; /* Slightly less vibrant Turquoise Blue */
+    --primary-foreground: 0 0% 100%; /* White text on Primary */
+    --secondary: 177 20% 88%; /* Lighter teal/gray for secondary elements */
+    --secondary-foreground: 177 39% 30%; /* Darker teal for text on secondary */
+    --muted: 177 20% 92%; /* Muted teal/gray */
+    --muted-foreground: 177 15% 50%; /* Muted text */
+    --accent: 42 73% 60%; /* #E5B84B Warm Gold */
+    --accent-foreground: 30 50% 15%; /* Dark Brown/Black text on Gold */
+    --destructive: 0 84.2% 60.2%; /* Standard Red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 177 20% 80%; /* Tealish Gray border */
+    --input: 177 20% 80%; /* Tealish Gray input background */
+    --ring: 178 65% 48%; /* Slightly less vibrant Turquoise Blue for focus rings */
+    --radius: 0.5rem;
+
+    --chart-1: 178 65% 48%; /* Slightly less vibrant Turquoise Blue */
+    --chart-2: 42 73% 60%;
+    --chart-3: 177 20% 60%;
+    --chart-4: 42 50% 70%;
+    --chart-5: 177 10% 50%;
+
+    --sidebar-background: 165 15% 92%;
+    --sidebar-foreground: 177 10% 25%;
+    --sidebar-primary: 178 65% 48%; /* Slightly less vibrant Turquoise Blue */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 42 73% 60%;
+    --sidebar-accent-foreground: 30 50% 15%;
+    --sidebar-border: 177 20% 80%;
+    --sidebar-ring: 178 65% 48%; /* Slightly less vibrant Turquoise Blue */
+  }
+
+  .dark {
+    --background: 177 15% 10%; /* Very Dark Desaturated Teal */
+    --foreground: 177 10% 85%; /* Light Gray/Teal for text */
+    --card: 177 15% 15%; /* Slightly Lighter Dark Teal for cards */
+    --card-foreground: 177 10% 85%;
+    --popover: 177 15% 15%;
+    --popover-foreground: 177 10% 85%;
+    --primary: 178 60% 55%; /* Slightly less vibrant Turquoise Blue (brightened for dark mode) */
+    --primary-foreground: 0 0% 100%; /* White text on Primary */
+    --secondary: 177 20% 25%; /* Darker teal for secondary elements */
+    --secondary-foreground: 177 15% 70%; /* Lighter teal for text on secondary */
+    --muted: 177 20% 20%; /* Muted dark teal */
+    --muted-foreground: 177 15% 55%; /* Muted lighter text */
+    --accent: 42 73% 65%; /* #E5B84B Warm Gold (brightened for dark mode) */
+    --accent-foreground: 30 50% 15%; /* Dark Brown/Black text on Gold */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 177 20% 30%; /* Dark Tealish Gray border */
+    --input: 177 20% 30%; /* Dark Tealish Gray input background */
+    --ring: 178 60% 55%; /* Slightly less vibrant Turquoise Blue for focus rings in dark mode */
+
+    --chart-1: 178 60% 55%; /* Slightly less vibrant Turquoise Blue (dark mode) */
+    --chart-2: 42 73% 65%;
+    --chart-3: 177 20% 70%;
+    --chart-4: 42 50% 80%;
+    --chart-5: 177 10% 60%;
+
+    --sidebar-background: 177 15% 12%;
+    --sidebar-foreground: 177 10% 85%;
+    --sidebar-primary: 178 60% 55%; /* Slightly less vibrant Turquoise Blue (dark mode) */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 42 73% 65%;
+    --sidebar-accent-foreground: 30 50% 15%;
+    --sidebar-border: 177 20% 30%;
+    --sidebar-ring: 178 60% 55%; /* Slightly less vibrant Turquoise Blue (dark mode) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom utility for scrollbar hiding */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* For Split Flap Display */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* For custom animated buttons */
+  .animated-button {
+    @apply relative overflow-hidden h-9 px-4 py-2 rounded-full bg-[#3d3a4e] text-white border-none cursor-pointer;
+  }
+
+  .animated-button::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full rounded-full transition-transform duration-500 ease-in-out;
+    background: linear-gradient(82.3deg, rgba(150, 93, 233, 1) 10.8%, rgba(99, 88, 238, 1) 94.3%);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
+
+  .animated-button:hover::before {
+    transform: scaleX(1);
+  }
+
+  .button-content {
+    @apply relative z-10 flex items-center justify-center;
+  }
+}
