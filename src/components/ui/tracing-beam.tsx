@@ -1,11 +1,9 @@
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
   motion,
   useTransform,
   useScroll,
-  useSpring,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -19,37 +17,37 @@ export const TracingBeam = ({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
 
   useEffect(() => {
-    if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
-    }
+    const contentElement = contentRef.current;
+    if (!contentElement) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      setSvgHeight(contentElement.offsetHeight);
+    });
+
+    resizeObserver.observe(contentElement);
+    return () => resizeObserver.disconnect();
   }, []);
 
-  const y1 = useSpring(
-    useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]),
-    {
-      stiffness: 500,
-      damping: 90,
-    },
-  );
-  const y2 = useSpring(
-    useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]),
-    {
-      stiffness: 500,
-      damping: 90,
-    },
-  );
+  // 1 to 1 ratio scroll
+  const scrollY = useTransform(scrollYProgress, [0, 1], [0, svgHeight]);
+  
+  // head
+  const y1 = scrollY;
+  
+  // tail + length of the beam
+  const y2 = useTransform(scrollY, (value) => value - 750); 
 
   return (
     <motion.div
       ref={ref}
-      className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
+      className={cn("relative mx-auto w-full max-w-4xl", className)}
     >
       <div className="absolute top-3 -left-4 md:-left-20">
         <motion.div
@@ -80,7 +78,7 @@ export const TracingBeam = ({
         <svg
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"
-          height={svgHeight} // Set the SVG height
+          height={svgHeight}
           className="ml-4 block"
           aria-hidden="true"
         >
@@ -109,8 +107,8 @@ export const TracingBeam = ({
               gradientUnits="userSpaceOnUse"
               x1="0"
               x2="0"
-              y1={y1} // set y1 for gradient
-              y2={y2} // set y2 for gradient
+              y1={y1}
+              y2={y2}
             >
               <stop stopColor="hsl(var(--primary))" stopOpacity="0"></stop>
               <stop stopColor="hsl(var(--primary))"></stop>

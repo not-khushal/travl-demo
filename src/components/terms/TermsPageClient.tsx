@@ -67,7 +67,7 @@ export function TermsPageClient() {
         showCurrencySelector={false}
       />
       <main className="flex-grow p-4 sm:p-6 lg:p-8 z-10">
-        <TracingBeam>
+        <TracingBeam >
             <div className="container mx-auto max-w-4xl">
             <section className="text-center py-12">
                 <ShieldCheck className="h-16 w-16 text-primary mx-auto mb-4" />

@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
@@ -158,7 +157,27 @@ export function ConnectPageClient() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 text-foreground">
+        <div className="relative flex flex-col min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 text-foreground overflow-hidden">
+            {/* animation */}
+            <style jsx>{`
+                .animated-gradient {
+                  background: linear-gradient(
+                    120deg, 
+                    rgba(59, 130, 246, 0.1),
+                    rgba(52, 211, 153, 0.15),
+                    rgba(59, 130, 246, 0.1)
+                  );
+                  background-size: 300% 300%;
+                  animation: animate-flow 8s ease-in-out infinite;
+                }
+                @keyframes animate-flow {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+            `}</style>
+            <div className="absolute inset-0 animated-gradient z-[-10]"></div>
+
             <Header
                 isScrolled={isScrolled}
                 searchQuery={searchQuery}

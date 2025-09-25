@@ -32,17 +32,17 @@ export function ProfileCard({ name, avatarUrl, location, rating, bio, role, stat
 
   return (
     <div
-      className="bg-card rounded-2xl shadow-lg p-5 flex flex-col animate-fade-up h-full transition-all duration-300 hover:shadow-xl hover:border-primary/30 border border-transparent"
+      className="group bg-card rounded-2xl shadow-lg p-5 flex flex-col h-full transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:border-primary/30 border border-transparent"
       style={{ animationDelay: `${animationDelay}ms` }}
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <Avatar className="h-12 w-12 border">
+          <Avatar className="h-12 w-12 border transition-transform duration-300 group-hover:scale-110">
             <AvatarImage src={avatarUrl} alt={name} data-ai-hint={aiHint} />
             <AvatarFallback>{name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div>
-            <h4 className="font-semibold text-lg text-foreground">{name}</h4>
+            <h4 className="font-semibold text-lg text-foreground transition-colors duration-300 group-hover:text-primary">{name}</h4>
             <div className="flex items-center text-xs text-muted-foreground">
               <MapPin className="h-3 w-3 mr-1" />
               <span>{location}</span>
@@ -70,11 +70,11 @@ export function ProfileCard({ name, avatarUrl, location, rating, bio, role, stat
       </div>
 
       <div className="mt-auto flex gap-2">
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="w-full transition-colors hover:bg-primary/10">
           <UserPlus className="h-4 w-4 mr-2" />
           Connect
         </Button>
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="w-full transition-colors hover:bg-primary/10">
           <MessageSquare className="h-4 w-4 mr-2" />
           Message
         </Button>

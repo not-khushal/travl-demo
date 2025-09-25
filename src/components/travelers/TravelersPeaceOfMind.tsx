@@ -1,45 +1,45 @@
 'use client';
 
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ShieldCheck, Lock, Headset } from 'lucide-react';
+import { CalendarCheck, BadgeCheck, MessageCircle } from 'lucide-react';
 
-// Data for our three pillars of trust
 const trustPillars = [
   {
-    icon: ShieldCheck,
-    titleKey: 'trustPillarVerificationTitle',
-    titleFallback: 'Verified Profiles',
-    descriptionKey: 'trustPillarVerificationDesc',
-    descriptionFallback: 'Our comprehensive verification process ensures that every member of our community is authentic and trustworthy.'
+    icon: CalendarCheck,
+    titleKey: 'peaceOfMind1Title',
+    titleFallback: 'Booking Guarantee',
+    descriptionKey: 'peaceOfMind1Desc',
+    descriptionFallback: 'Travel without worry. In the unlikely event a host cancels, we’ll help you find a comparable stay or provide a full refund.'
   },
   {
-    icon: Lock,
-    titleKey: 'trustPillarPaymentsTitle',
-    titleFallback: 'Secure Payments',
-    descriptionKey: 'trustPillarPaymentsDesc',
-    descriptionFallback: 'We use industry-leading encryption to protect your financial information on every single transaction.'
+    icon: BadgeCheck,
+    titleKey: 'peaceOfMind2Title',
+    titleFallback: 'Verified Listings',
+    descriptionKey: 'peaceOfMind2Desc',
+    descriptionFallback: 'What you see is what you get. Our team verifies photos and reviews to ensure every listing meets our high standards for quality and authenticity.'
   },
   {
-    icon: Headset,
-    titleKey: 'trustPillarSupportTitle',
-    titleFallback: '24/7 Responsive Support',
-    descriptionKey: 'trustPillarSupportDesc',
-    descriptionFallback: 'Our dedicated global support team is always available to assist you with any questions or concerns.'
+    icon: MessageCircle,
+    titleKey: 'peaceOfMind3Title',
+    titleFallback: 'Secure Communication',
+    descriptionKey: 'peaceOfMind3Desc',
+    descriptionFallback: 'Chat with hosts and companions confidently. Our secure platform protects your personal contact details until a booking is confirmed.'
   }
 ];
 
-export function DriftinTrustSafetySection() {
+export function TravelersPeaceOfMind() {
   const { getTranslation } = useLanguage();
 
   return (
     <section className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
         <p className="text-sm text-primary font-semibold mb-2 uppercase tracking-wider">
-          {getTranslation('driftinWhyChooseLabel', 'Why Choose Driftin?')}
+          {getTranslation('peaceOfMindLabel', 'Your Safety is Our Priority')}
         </p>
         <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-16">
-          {getTranslation('driftinTrustSafetyTitle', 'Trust & Safety')}
+          {getTranslation('peaceOfMindTitle', 'Travel with Total Confidence')}
         </h2>
 
         {/* horizontal grid */}
@@ -74,7 +74,10 @@ export function DriftinTrustSafetySection() {
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg rounded-lg transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40"
           >
-            {getTranslation('driftinJoinNowButton', 'Join Now')}
+            <Link href="/connect">
+              {getTranslation('peaceOfMindButton', 'Stay Connected')}
+            </Link>
+            
           </Button>
         </div>
       </div>

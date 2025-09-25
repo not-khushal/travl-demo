@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -7,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, MessageSquare } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+// Added the CheckBadgeIcon import
+import { CheckBadgeIcon } from '@heroicons/react/24/solid'; 
 
 export interface CompanionProfileCardProps {
   id: string;
@@ -67,7 +68,11 @@ export function CompanionProfileCard({
           </div>
         </div>
         <CardContent className="p-5 flex flex-col flex-grow">
-          <h3 className="font-headline text-xl font-semibold text-foreground mb-1">{name}</h3>
+         
+          <div className="flex items-center gap-1.5 mb-1"> 
+            <h3 className="font-headline text-xl font-semibold text-foreground">{name}</h3>
+            <CheckBadgeIcon className="h-5 w-5 text-blue-500" /> {/* Verification icon */}
+          </div>
           <p className="text-xs text-muted-foreground mb-1">{location}</p>
           <p className="text-sm text-primary mb-3 font-medium">{languages}</p>
           <p className="text-xs text-muted-foreground mb-4 line-clamp-3 flex-grow">{bio}</p>

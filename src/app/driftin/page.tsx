@@ -26,10 +26,10 @@ const DriftinDiscoverAdventureSection = dynamic(() =>
   import('@/components/driftin/DriftinDiscoverAdventureSection').then((mod) => mod.DriftinDiscoverAdventureSection),
   { loading: () => <Skeleton className="h-[500px] w-full" /> }
 );
-const DriftinStayInTouchSection = dynamic(() =>
-  import('@/components/driftin/DriftinStayInTouchSection').then((mod) => mod.DriftinStayInTouchSection),
-  { loading: () => <Skeleton className="h-[400px] w-full" /> }
-);
+// const DriftinStayInTouchSection = dynamic(() =>
+//   import('@/components/driftin/DriftinStayInTouchSection').then((mod) => mod.DriftinStayInTouchSection),
+//   { loading: () => <Skeleton className="h-[400px] w-full" /> }
+// );
 
 
 const SCROLL_THRESHOLD = 50;
@@ -69,7 +69,7 @@ export default function DriftinPage() {
         <DriftinTrustSafetySection />
         <DriftinTrustedBrandsSection />
         <DriftinDiscoverAdventureSection />
-        <DriftinStayInTouchSection />
+        {/* <DriftinStayInTouchSection /> */}
       </main>
       <Footer />
     </div>

@@ -13,7 +13,7 @@ export function FilterSidebar() {
 
   return (
     <aside className="sticky top-24">
-      <div className="bg-card/40 backdrop-blur-xl border border-border/20 rounded-xl shadow-lg p-6">
+      <div className="bg-card/40 backdrop-blur-xl border border-border/20 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
         <h3 className="font-headline text-2xl font-semibold mb-6">Filters</h3>
         <div className="space-y-6">
           {/* Budget Filter */}
@@ -52,7 +52,7 @@ export function FilterSidebar() {
           </div>
 
           {/* Apply Button */}
-          <Button variant="outline" className="w-full mt-4">
+          <Button variant="outline" className="w-full mt-4 transition-colors hover:bg-primary/10">
             Apply Filters
           </Button>
         </div>

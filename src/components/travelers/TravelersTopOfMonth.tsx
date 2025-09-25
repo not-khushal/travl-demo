@@ -1,84 +1,82 @@
 'use client';
 
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { AdventureProfileCard, type AdventureProfileCardProps } from './AdventureProfileCard';
+import { AdventureProfileCard, type AdventureProfileCardProps } from '../driftin/AdventureProfileCard'; 
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 
-// --- CONTENT MODIFIED FOR HOSTS ---
 const initialProfiles: AdventureProfileCardProps[] = [
   {
-    id: 'adventure-1',
-    mainImageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&h=1000&fit=crop',
-    mainImageAltKey: 'adventureProfile1Alt',
-    mainImageAltFallback: 'Man smiling in a natural setting',
-    mainImageAiHint: 'man portrait street',
-    avatarImageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=40&h=40&fit=crop',
-    avatarImageAltKey: 'adventureAvatar1Alt',
-    avatarImageAltFallback: 'John S.',
-    avatarAiHint: 'man face',
-    nameKey: 'adventureProfile1Name',
-    nameFallback: 'John S.',
-    labelKey: 'adventureProfile1Label',
-    labelFallback: 'Top Host',
-    locationKey: 'adventureProfile1Location',
-    locationFallback: 'Paris, France',
+    id: 'traveler-1',
+    mainImageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&h=1000&fit=crop',
+    mainImageAltKey: 'topTraveler1Alt',
+    mainImageAltFallback: 'Man smiling in an urban environment',
+    mainImageAiHint: 'man portrait happy street',
+    avatarImageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=40&h=40&fit=crop',
+    avatarImageAltKey: 'topTravelerAvatar1Alt',
+    avatarImageAltFallback: 'Marco B.',
+    avatarAiHint: 'man face outdoor',
+    nameKey: 'topTraveler1Name',
+    nameFallback: 'Marco B.',
+    labelKey: 'topTraveler1Label',
+    labelFallback: 'Globetrotter Gold',
+    locationKey: 'topTraveler1Location',
+    locationFallback: '3 Continents Visited',
   },
   {
-    id: 'adventure-2',
-    mainImageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&fit=crop',
-    mainImageAltKey: 'adventureProfile2Alt',
-    mainImageAltFallback: 'Woman relaxing on a couch',
-    mainImageAiHint: 'woman portrait smiling',
-    avatarImageUrl: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=40&h=40&fit=crop',
-    avatarImageAltKey: 'adventureAvatar2Alt',
-    avatarImageAltFallback: 'Emily R.',
-    avatarAiHint: 'woman face',
-    nameKey: 'adventureProfile2Name',
-    nameFallback: 'Emily R.',
-    labelKey: 'adventureProfile2Label',
-    labelFallback: 'Top Host',
-    locationKey: 'adventureProfile2Location',
-    locationFallback: 'Kyoto, Japan',
+    id: 'traveler-2',
+    mainImageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&h=1000&fit=crop',
+    mainImageAltKey: 'topTraveler2Alt',
+    mainImageAltFallback: 'Woman in a stylish jacket',
+    mainImageAiHint: 'woman portrait fashion city',
+    avatarImageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=40&h=40&fit=crop',
+    avatarImageAltKey: 'topTravelerAvatar2Alt',
+    avatarImageAltFallback: 'Elena S.',
+    avatarAiHint: 'woman face confident',
+    nameKey: 'topTraveler2Name',
+    nameFallback: 'Elena S.',
+    labelKey: 'topTraveler2Label',
+    labelFallback: 'Top Explorer',
+    locationKey: 'topTraveler2Location',
+    locationFallback: 'Southeast Asia Expert',
   },
   {
-    id: 'adventure-3',
-    mainImageUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&h=500&fit=crop',
-    mainImageAltKey: 'adventureProfile3Alt',
-    mainImageAltFallback: 'Woman with a thoughtful expression',
-    mainImageAiHint: 'woman portrait fashion',
-    avatarImageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=40&h=40&fit=crop',
-    avatarImageAltKey: 'adventureAvatar3Alt',
-    avatarImageAltFallback: 'Sarah L.',
-    avatarAiHint: 'woman face serene',
-    nameKey: 'adventureProfile3Name',
-    nameFallback: 'Sarah L.',
-    labelKey: 'adventureProfile3Label',
-    labelFallback: 'Top Host',
-    locationKey: 'adventureProfile3Location',
-    locationFallback: 'New York, USA',
+    id: 'traveler-3',
+    mainImageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&h=1000&fit=crop',
+    mainImageAltKey: 'topTraveler3Alt',
+    mainImageAltFallback: 'Woman smiling with a dog',
+    mainImageAiHint: 'woman portrait happy dog',
+    avatarImageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=40&h=40&fit=crop',
+    avatarImageAltKey: 'topTravelerAvatar3Alt',
+    avatarImageAltFallback: 'Jasmine K.',
+    avatarAiHint: 'woman face smiling',
+    nameKey: 'topTraveler3Name',
+    nameFallback: 'Jasmine K.',
+    labelKey: 'topTraveler3Label',
+    labelFallback: 'Community Pillar',
+    locationKey: 'topTraveler3Location',
+    locationFallback: '20+ Reviews Written',
   },
   {
-    id: 'adventure-4',
-    mainImageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=500&fit=crop',
-    mainImageAltKey: 'adventureProfile4Alt',
-    mainImageAltFallback: 'Man with a gentle smile',
-    mainImageAiHint: 'man portrait gentle',
-    avatarImageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=40&h=40&fit=crop',
-    avatarImageAltKey: 'adventureAvatar4Alt',
-    avatarImageAltFallback: 'Liam K.',
-    nameKey: 'adventureProfile4Name',
-    nameFallback: 'Liam K.',
-    avatarAiHint: '',
-    labelKey: 'adventureProfile4Label',
-    labelFallback: 'Top Host',
-    locationKey: 'adventureProfile4Location',
-    locationFallback: 'Rome, Italy',
+    id: 'traveler-4',
+    mainImageUrl: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=800&h=1000&fit=crop',
+    mainImageAltKey: 'topTraveler4Alt',
+    mainImageAltFallback: 'Man looking out over a landscape',
+    mainImageAiHint: 'man portrait thoughtful nature',
+    avatarImageUrl: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=40&h=40&fit=crop',
+    avatarImageAltKey: 'topTravelerAvatar4Alt',
+    avatarImageAltFallback: 'Leo G.',
+    nameKey: 'topTraveler4Name',
+    nameFallback: 'Leo G.',
+    avatarAiHint: 'man face travel',
+    labelKey: 'topTraveler4Label',
+    labelFallback: 'Adventure Seeker',
+    locationKey: 'topTraveler4Location',
+    locationFallback: 'South America Specialist',
   },
 ];
 
-export function DriftinDiscoverAdventureSection() {
-  const { getTranslation } = useLanguage();
+export function TravelersTopOfMonth() {
+  const getTranslation = (key: string, fallback: string) => fallback;
   const [profiles, setProfiles] = useState(initialProfiles);
 
   const positions = useRef<Map<string, DOMRect>>(new Map()).current;
@@ -152,21 +150,20 @@ export function DriftinDiscoverAdventureSection() {
                     data-id={profile.id}
                     key={profile.id}
                     onClick={() => handleImageClick(profile.id)}
-                    className="w-full h-1/3"
+                    className="w-full h-1/3 cursor-pointer"
                   >
                    <AdventureProfileCard {...profile} isMain={false} />
                  </div>
               ))}
             </div>
           </div>
-          
-          {/* --- CONTENT MODIFIED FOR HOSTS --- */}
+        
           <div className="text-left">
             <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              {getTranslation('discoverMonthlyTitle', "Meet This Month's Top Hosts")}
+              {getTranslation('topTravelersTitle', "Meet This Month's Top Travelers")}
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-8">
-              {getTranslation('discoverMonthlySubtitle', 'Explore the profiles of our most celebrated hosts who are making the community vibrant by offering unforgettable stays.')}
+              {getTranslation('topTravelersSubtitle', 'Get inspired by our most active and celebrated travelers. These are the community members setting the bar for adventure and discovery.')}
             </p>
             <div className="space-y-4">
               {initialProfiles.map(profile => (

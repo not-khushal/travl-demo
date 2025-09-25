@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -12,7 +11,7 @@ export function SubNav() {
 
   const navItems = [
     { href: '/driftin', labelKey: 'subNavHosts', fallback: 'HOSTS' },
-    { href: '/driftin', labelKey: 'subNavTravelers', fallback: 'TRAVELERS' },
+    { href: '/travelers', labelKey: 'subNavTravelers', fallback: 'TRAVELERS' },
     { href: '/companions', labelKey: 'subNavCompanions', fallback: 'COMPANIONS' },
     { href: '/connect', labelKey: 'connect', fallback: 'CONNECT' },
   ];
@@ -27,7 +26,7 @@ export function SubNav() {
               href={item.href}
               className={cn(
                 'text-sm font-semibold tracking-wider uppercase transition-colors',
-                (pathname === item.href || (item.href === '/driftin' && pathname.startsWith('/companions')))
+                pathname === item.href
                   ? 'text-primary'
                   : 'text-muted-foreground hover:text-primary/80'
               )}

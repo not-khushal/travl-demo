@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
@@ -10,10 +9,16 @@ import { CompanionsHeroSection } from './CompanionsHeroSection';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Lazy loading sections
+// This is our "Top Companions" component
+const CompanionsTopOfMonth = dynamic(() => 
+  import('./CompanionsTopOfMonth').then(mod => mod.CompanionsTopOfMonth), 
+  { loading: () => <Skeleton className="h-[400px] w-full" /> } // Adjusted skeleton height
+);
 const CompanionsFeaturedGuidesSection = dynamic(() => 
   import('./CompanionsFeaturedGuidesSection').then(mod => mod.CompanionsFeaturedGuidesSection),
-  { loading: () => <Skeleton className="h-[500px] w-full" /> }
+  { loading: () => <Skeleton className="h-[700px] w-full" /> } // Adjusted skeleton height
 );
+
 const CompanionsElevateSection = dynamic(() =>
   import('./CompanionsElevateSection').then(mod => mod.CompanionsElevateSection),
   { loading: () => <Skeleton className="h-[500px] w-full" /> }
@@ -62,8 +67,9 @@ export function CompanionsPageClient() {
         <SubNav />
         <CompanionsFeaturedGuidesSection />
         <CompanionsElevateSection />
-        <CompanionsGroupAdventuresSection /> {/* Added new section here */}
+        <CompanionsGroupAdventuresSection />
         <CompanionsCallToActionSection />
+        <CompanionsTopOfMonth />
       </main>
       <Footer />
     </div>
